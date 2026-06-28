@@ -1,0 +1,227 @@
+<div class="dashboard-page">
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <h1>Admin Dashboard</h1>
+
+            <p>
+
+                Monitor your store performance and business insights.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- =======================
+         STATISTICS
+    ======================== -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card users">
+
+            <div class="icon">
+
+                👥
+
+            </div>
+
+            <div>
+
+                <h3>Total Users</h3>
+
+                <h1>{{ totalUsers }}</h1>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card products">
+
+            <div class="icon">
+
+                📦
+
+            </div>
+
+            <div>
+
+                <h3>Total Products</h3>
+
+                <h1>{{ totalProducts }}</h1>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card orders">
+
+            <div class="icon">
+
+                🛒
+
+            </div>
+
+            <div>
+
+                <h3>Total Orders</h3>
+
+                <h1>{{ totalOrders }}</h1>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card revenue">
+
+            <div class="icon">
+
+                💰
+
+            </div>
+
+            <div>
+
+                <h3>Total Revenue</h3>
+
+                <h1>
+
+                    ₹{{ totalRevenue }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =======================
+         ANALYTICS
+    ======================== -->
+
+    <div class="analytics-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                Revenue Analytics
+
+            </h2>
+
+            <p>
+
+                Monthly revenue overview
+
+            </p>
+
+        </div>
+
+        <canvas
+
+            id="revenueChart">
+
+        </canvas>
+
+    </div>
+
+    <!-- =======================
+         TOP PRODUCTS
+    ======================== -->
+
+    <div class="products-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                Top Selling Products
+
+            </h2>
+
+            <p>
+
+                Best performing products in your store.
+
+            </p>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="products-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+
+                            Rank
+
+                        </th>
+
+                        <th>
+
+                            Product Name
+
+                        </th>
+
+                        <th>
+
+                            Units Sold
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr
+
+                        *ngFor="let p of topProducts; let i = index">
+
+                        <td>
+
+                            <span class="rank">
+
+                                #{{ i + 1 }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {{ p.product }}
+
+                        </td>
+
+                        <td>
+
+                            <span class="sold-badge">
+
+                                {{ p.quantitySold }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

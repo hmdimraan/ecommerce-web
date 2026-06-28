@@ -1,0 +1,277 @@
+<div class="admin-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Order Management</h1>
+
+            <p>
+                Manage customer orders and update their status.
+            </p>
+
+        </div>
+
+        <div class="filter-section">
+
+            <label>
+                Filter Orders
+            </label>
+
+            <select
+                class="form-select"
+                [(ngModel)]="selectedStatus">
+
+                <option value="">
+                    All Orders
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Shipped">
+                    Shipped
+                </option>
+
+                <option value="Delivered">
+                    Delivered
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div
+        class="order-card"
+        *ngFor="let order of filteredOrders">
+
+        <div class="order-top">
+
+            <div>
+
+                <h2>
+
+                    Order #{{ order.orderID }}
+
+                </h2>
+
+                <span class="date">
+
+                    {{ order.orderDate | date:'medium' }}
+
+                </span>
+
+            </div>
+
+            <div>
+
+                <span
+                    class="status pending"
+                    *ngIf="order.status === 'Pending'">
+
+                    Pending
+
+                </span>
+
+                <span
+                    class="status shipped"
+                    *ngIf="order.status === 'Shipped'">
+
+                    Shipped
+
+                </span>
+
+                <span
+                    class="status delivered"
+                    *ngIf="order.status === 'Delivered'">
+
+                    Delivered
+
+                </span>
+
+                <span
+                    class="status cancelled"
+                    *ngIf="order.status === 'Cancelled'">
+
+                    Cancelled
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="customer-card">
+
+            <div>
+
+                <label>
+                    Customer Name
+                </label>
+
+                <h4>
+
+                    {{ order.customerName }}
+
+                </h4>
+
+            </div>
+
+            <div>
+
+                <label>
+                    Email Address
+                </label>
+
+                <h4>
+
+                    {{ order.customerEmail }}
+
+                </h4>
+
+            </div>
+
+        </div>
+
+        <table class="product-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let item of order.orderDetails">
+
+                    <td>
+
+                        {{ item.productName }}
+
+                    </td>
+
+                    <td>
+
+                        {{ item.quantity }}
+
+                    </td>
+
+                    <td>
+
+                        ₹{{ item.price }}
+
+                    </td>
+
+                    <td>
+
+                        ₹{{ item.price * item.quantity }}
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="bottom-section">
+
+            <div class="total">
+
+                <span>
+
+                    Order Total
+
+                </span>
+
+                <h2>
+
+                    ₹{{ order.totalAmount }}
+
+                </h2>
+
+            </div>
+
+            <div class="status-update">
+
+                <select
+                    class="form-select"
+                    [(ngModel)]="order.selectedStatus">
+
+                    <option
+                        value=""
+                        disabled>
+
+                        Select Status
+
+                    </option>
+
+                    <option value="Pending">
+
+                        Pending
+
+                    </option>
+
+                    <option value="Shipped">
+
+                        Shipped
+
+                    </option>
+
+                    <option value="Delivered">
+
+                        Delivered
+
+                    </option>
+
+                    <option value="Cancelled">
+
+                        Cancelled
+
+                    </option>
+
+                </select>
+
+                <button
+                    class="update-btn"
+                    *ngIf="order.selectedStatus"
+                    (click)="updateStatus(order.orderID, order.selectedStatus)">
+
+                    Update Status
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

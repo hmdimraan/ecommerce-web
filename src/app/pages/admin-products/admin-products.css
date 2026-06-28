@@ -1,0 +1,480 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+.products-page{
+
+    max-width:1400px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.page-header h1{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.page-header p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   ADD PRODUCT BUTTON
+========================================== */
+
+.add-product-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    border:none;
+
+    padding:14px 26px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.30);
+
+}
+
+.add-product-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.40);
+
+}
+
+/* ==========================================
+   TABLE CARD
+========================================== */
+
+.table-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+    overflow:hidden;
+
+}
+
+/* ==========================================
+   TABLE HEADER
+========================================== */
+
+.table-header{
+
+    padding:28px 35px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.table-header h2{
+
+    color:#0f172a;
+
+    margin-bottom:6px;
+
+}
+
+.table-header p{
+
+    color:#64748b;
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.products-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.products-table thead{
+
+    background:#2563eb;
+
+}
+
+.products-table th{
+
+    color:white;
+
+    padding:18px;
+
+    font-weight:600;
+
+    text-align:center;
+
+}
+
+.products-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #edf2f7;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.products-table tbody tr{
+
+    transition:.3s;
+
+}
+
+.products-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.image-wrapper{
+
+    width:130px;
+
+    height:130px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    padding:10px;
+
+    overflow:hidden;
+
+}
+
+.image-wrapper img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    transition:.35s ease;
+
+}
+
+.image-wrapper:hover img{
+
+    transform:scale(1.05);
+
+}
+/* ==========================================
+   PRODUCT
+========================================== */
+
+.product-info h3{
+
+    margin:0;
+
+    font-size:17px;
+
+    color:#1e293b;
+
+}
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.price{
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#16a34a;
+
+}
+
+/* ==========================================
+   STOCK BADGES
+========================================== */
+
+.stock{
+
+    display:inline-block;
+
+    min-width:65px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    color:white;
+
+}
+
+.high-stock{
+
+    background:#16a34a;
+
+}
+
+.medium-stock{
+
+    background:#f59e0b;
+
+}
+
+.low-stock{
+
+    background:#dc2626;
+
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.action-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================
+   EDIT
+========================================== */
+
+.edit-btn{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   DELETE
+========================================== */
+
+.delete-btn{
+
+    border:none;
+
+    background:#dc2626;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   EMPTY
+========================================== */
+
+.empty-state{
+
+    padding:80px;
+
+    text-align:center;
+
+}
+
+.empty-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+.empty-state h2{
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+
+}
+
+.empty-state p{
+
+    color:#64748b;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.page-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.products-table{
+
+min-width:900px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.page-header h1{
+
+font-size:30px;
+
+}
+
+.table-header{
+
+padding:22px;
+
+}
+
+.products-page{
+
+padding:10px;
+
+}
+
+.add-product-btn{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+}

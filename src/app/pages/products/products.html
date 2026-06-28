@@ -1,0 +1,242 @@
+<div class="products-page">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="products-header">
+
+        <div>
+
+            <h1>Discover Products</h1>
+
+            <p>
+
+                Find the perfect products at the best prices.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         FILTERS
+    ========================== -->
+
+    <div class="toolbar-card">
+
+        <div class="toolbar">
+
+            <div class="filter-group">
+
+                <label>
+
+                    Category
+
+                </label>
+
+                <select
+                    class="form-select"
+                    [(ngModel)]="selectedCategory"
+                    (ngModelChange)="currentPage = 1">
+
+                    <option [ngValue]="0">
+
+                        All Categories
+
+                    </option>
+
+                    <option
+                        *ngFor="let c of categories"
+                        [ngValue]="c.categoryID">
+
+                        {{ c.categoryName }}
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="search-group">
+
+                <label>
+
+                    Search
+
+                </label>
+
+                <input
+
+                    class="form-control"
+
+                    type="text"
+
+                    placeholder="Search products..."
+
+                    [(ngModel)]="searchText"
+
+                    (ngModelChange)="currentPage = 1">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         PRODUCTS GRID
+    ========================== -->
+
+    <div class="products-grid">
+
+        <div
+
+            class="product-card"
+
+            *ngFor="let p of paginatedProducts()">
+
+            <div class="image-section">
+
+                <img
+
+                    [src]="
+                    p.productImagePath
+                    ? 'https://ecommerce-api-fm65.onrender.com/' + p.productImagePath
+                    : 'assets/no-image.png'"
+
+                    alt="{{ p.productName }}">
+
+            </div>
+
+            <div class="details-section">
+
+                <h2>
+
+                    {{ p.productName }}
+
+                </h2>
+
+                <div class="rating">
+
+                    ⭐
+
+                    {{ p.averageRating | number:'1.1-1' }}
+
+                    <span>
+
+                        ({{ p.reviewCount }} Reviews)
+
+                    </span>
+
+                </div>
+
+                <h1 class="price">
+
+                    ₹{{ p.price }}
+
+                </h1>
+
+                <div
+                    class="stock"
+
+                    [class.out-stock]="p.stock==0">
+
+                    {{ p.stock==0
+
+                    ? 'Out Of Stock'
+
+                    : 'In Stock' }}
+
+                </div>
+
+                <div class="buttons">
+
+                    <button
+
+                        class="details-btn"
+
+                        [routerLink]="['/product', p.productID]">
+
+                        View Details
+
+                    </button>
+
+                    <button
+
+                        class="cart-btn"
+
+                        (click)="addToCart(p)"
+
+                        [disabled]="p.stock==0">
+
+                        {{ p.stock==0
+
+                        ? 'Out Of Stock'
+
+                        : 'Add To Cart' }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         PAGINATION
+    ========================== -->
+
+    <div class="pagination-card">
+
+        <button
+
+            class="page-btn"
+
+            (click)="previousPage()"
+
+            [disabled]="currentPage===1">
+
+            ← Previous
+
+        </button>
+
+        <div class="page-number">
+
+            Page
+
+            <strong>
+
+                {{ currentPage }}
+
+            </strong>
+
+            of
+
+            <strong>
+
+                {{ totalPages() }}
+
+            </strong>
+
+        </div>
+
+        <button
+
+            class="page-btn"
+
+            (click)="nextPage()"
+
+            [disabled]="currentPage===totalPages()">
+
+            Next →
+
+        </button>
+
+    </div>
+
+</div>

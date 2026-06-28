@@ -1,0 +1,380 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+.dashboard-page{
+
+    max-width:1400px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.dashboard-header{
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+
+}
+
+.dashboard-header p{
+
+    font-size:16px;
+
+    color:#64748b;
+
+}
+
+/* ==========================================
+   STATS GRID
+========================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+/* ==========================================
+   STAT CARD
+========================================== */
+
+.stat-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    color:white;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 30px 60px rgba(0,0,0,.20);
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.icon{
+
+    width:80px;
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    background:rgba(255,255,255,.18);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(8px);
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.stat-card h3{
+
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    opacity:.95;
+
+}
+
+.stat-card h1{
+
+    margin-top:8px;
+
+    font-size:36px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   CARD COLORS
+========================================== */
+
+.users{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+}
+
+.products{
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+}
+
+.orders{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+
+}
+
+.revenue{
+
+    background:linear-gradient(135deg,#8b5cf6,#7c3aed);
+
+}
+
+/* ==========================================
+   ANALYTICS
+========================================== */
+
+.analytics-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   PRODUCTS CARD
+========================================== */
+
+.products-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+.section-header{
+
+    margin-bottom:25px;
+
+}
+
+.section-header h2{
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+    font-size:28px;
+
+}
+
+.section-header p{
+
+    color:#64748b;
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.products-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.products-table thead{
+
+    background:#2563eb;
+
+}
+
+.products-table th{
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+}
+
+.products-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #edf2f7;
+
+    transition:.3s;
+
+}
+
+.products-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.rank{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+.sold-badge{
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   CHART
+========================================== */
+
+canvas{
+
+    width:100% !important;
+
+    max-height:420px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.stats-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboard-header h1{
+
+font-size:32px;
+
+}
+
+.stat-card{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.analytics-card,
+.products-card{
+
+padding:25px;
+
+}
+
+.section-header h2{
+
+font-size:24px;
+
+}
+
+}

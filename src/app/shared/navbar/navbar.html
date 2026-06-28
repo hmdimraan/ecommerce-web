@@ -1,0 +1,102 @@
+<nav class="navbar">
+
+    <div class="logo">
+
+        <a routerLink="/products">
+
+            🛍️ ShopSphere
+
+        </a>
+
+    </div>
+
+    <div class="nav-links">
+
+        <ng-container *ngIf="isLoggedIn(); else guestLinks">
+
+            <a
+                routerLink="/products"
+                routerLinkActive="active">
+
+                Products
+
+            </a>
+
+            <a
+                routerLink="/cart"
+                routerLinkActive="active">
+
+                Cart
+
+            </a>
+
+            <a
+                routerLink="/orders"
+                routerLinkActive="active">
+
+                My Orders
+
+            </a>
+
+            <a
+                *ngIf="isAdmin()"
+                routerLink="/dashboard"
+                routerLinkActive="active">
+
+                Dashboard
+
+            </a>
+
+            <a
+                *ngIf="isAdmin()"
+                routerLink="/admin"
+                routerLinkActive="active">
+
+                Manage Orders
+
+            </a>
+
+            <a
+                *ngIf="isAdmin()"
+                routerLink="/admin-products"
+                routerLinkActive="active">
+
+                Manage Products
+
+            </a>
+
+            <button
+
+                class="logout-btn"
+
+                (click)="logout()">
+
+                Logout
+
+            </button>
+
+        </ng-container>
+
+        <ng-template #guestLinks>
+
+            <a
+                routerLink="/login"
+                routerLinkActive="active">
+
+                Login
+
+            </a>
+
+            <a
+                routerLink="/register"
+                routerLinkActive="active">
+
+                Register
+
+            </a>
+
+        </ng-template>
+
+    </div>
+
+</nav>

@@ -1,0 +1,162 @@
+<div class="checkout-page">
+
+    <div class="checkout-header">
+
+        <div>
+
+            <h1>Checkout</h1>
+
+            <p>
+
+                Review your order before placing it.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="checkout-container">
+
+        <!-- LEFT -->
+
+        <div class="products-section">
+
+            <div
+                class="product-card"
+                *ngFor="let item of cart">
+
+                <div class="product-image">
+
+                   <img
+   [src]="environment.imageUrl + item.productImagePath">
+                </div>
+
+                <div class="product-details">
+
+                    <h2>
+
+                        {{ item.productName }}
+
+                    </h2>
+
+                    <p>
+
+                        Quantity :
+                        <strong>
+
+                            {{ item.quantity }}
+
+                        </strong>
+
+                    </p>
+
+                    <p class="price">
+
+                        ₹{{ item.price }}
+
+                    </p>
+
+                </div>
+
+                <div class="item-total">
+
+                    ₹{{ item.price * item.quantity }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="summary-card">
+
+            <h2>
+
+                Order Summary
+
+            </h2>
+
+            <div class="summary-row">
+
+                <span>
+
+                    Products
+
+                </span>
+
+                <span>
+
+                    {{ cart.length }}
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>
+
+                    Shipping
+
+                </span>
+
+                <span>
+
+                    FREE
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>
+
+                    Tax
+
+                </span>
+
+                <span>
+
+                    Included
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-total">
+
+                <span>
+
+                    Grand Total
+
+                </span>
+
+                <strong>
+
+                    ₹{{ getTotal() }}
+
+                </strong>
+
+            </div>
+
+            <button
+
+                class="place-order-btn"
+
+                (click)="placeOrder()">
+
+                Place Order
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

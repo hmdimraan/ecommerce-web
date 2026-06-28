@@ -1,0 +1,200 @@
+<div class="cart-page">
+
+    <div class="cart-header">
+
+        <div>
+
+            <h1>Shopping Cart</h1>
+
+            <p>
+
+                Review your selected products before checkout.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div
+        class="empty-cart"
+        *ngIf="cart.length===0">
+
+        <div class="empty-icon">
+
+            🛒
+
+        </div>
+
+        <h2>
+
+            Your Cart is Empty
+
+        </h2>
+
+        <p>
+
+            Looks like you haven't added anything yet.
+
+        </p>
+
+    </div>
+
+    <div
+        *ngIf="cart.length>0"
+        class="cart-container">
+
+        <div
+            class="cart-card"
+
+            *ngFor="let item of cart; trackBy: trackByProductId">
+
+            <div class="product-image">
+<img
+    [src]="environment.imageUrl + item.productImagePath">
+
+            </div>
+
+            <div class="product-details">
+
+                <h2>
+
+                    {{ item.productName }}
+
+                </h2>
+
+                <p class="price">
+
+                    ₹{{ item.price }}
+
+                </p>
+
+                <div class="quantity-section">
+
+                    <span>
+
+                        Quantity
+
+                    </span>
+
+                    <div class="quantity-box">
+
+                        <button
+
+                            class="qty-btn"
+
+                            (click)="decreaseQuantity(item)">
+
+                            −
+
+                        </button>
+
+                        <span>
+
+                            {{ item.quantity }}
+
+                        </span>
+
+                        <button
+
+                            class="qty-btn"
+
+                            (click)="increaseQuantity(item)">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="product-total">
+
+                <h3>
+
+                    ₹{{ item.price * item.quantity }}
+
+                </h3>
+
+                <button
+
+                    class="remove-btn"
+
+                    (click)="removeItem(item)">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h2>
+
+                Order Summary
+
+            </h2>
+
+            <div class="summary-row">
+
+                <span>
+
+                    Total Products
+
+                </span>
+
+                <span>
+
+                    {{ cart.length }}
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>
+
+                    Grand Total
+
+                </span>
+
+                <strong>
+
+                    ₹{{ getTotal() }}
+
+                </strong>
+
+            </div>
+
+            <button
+
+                class="checkout-btn"
+
+                (click)="goToCheckout()">
+
+                Proceed To Checkout
+
+            </button>
+
+            <button
+
+                class="clear-btn"
+
+                (click)="clearCart()">
+
+                Clear Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

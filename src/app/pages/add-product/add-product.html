@@ -1,0 +1,87 @@
+<div class="add-product-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Add New Product</h1>
+      <p>Create and publish a new product to your store.</p>
+    </div>
+
+  </div>
+
+  <div class="add-product-card">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          Product Name
+        </label>
+
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Enter product name"
+          [(ngModel)]="product.productName">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Price
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          placeholder="Enter product price"
+          [(ngModel)]="product.price">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Stock
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          placeholder="Available stock"
+          [(ngModel)]="product.stock">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Product Image
+        </label>
+
+        <input
+          class="form-control"
+          type="file"
+          (change)="onFileSelected($event)">
+
+      </div>
+
+    </div>
+
+    <div class="button-area">
+
+      <button
+        class="save-btn"
+        (click)="addProduct()">
+
+        Add Product
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

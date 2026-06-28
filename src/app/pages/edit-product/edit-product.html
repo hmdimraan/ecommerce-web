@@ -1,0 +1,138 @@
+<div class="edit-product-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Edit Product</h1>
+
+            <p>
+
+                Update your product information and image.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div
+        class="loading-card"
+        *ngIf="!isLoaded">
+
+        <div class="loader"></div>
+
+        <h3>
+
+            Loading Product...
+
+        </h3>
+
+    </div>
+
+    <div
+        class="edit-product-card"
+        *ngIf="isLoaded">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    Product Name
+
+                </label>
+
+                <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter Product Name"
+                    [(ngModel)]="product.productName">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Price
+
+                </label>
+
+                <input
+                    class="form-control"
+                    type="number"
+                    placeholder="Enter Product Price"
+                    [(ngModel)]="product.price">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Stock
+
+                </label>
+
+                <input
+                    class="form-control"
+                    type="number"
+                    placeholder="Available Stock"
+                    [(ngModel)]="product.stock">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Upload New Image
+
+                </label>
+
+                <input
+                    class="form-control"
+                    type="file"
+                    (change)="onImageSelected($event)">
+
+            </div>
+
+        </div>
+
+        <div
+            class="current-image"
+            *ngIf="product.productImagePath">
+
+            <h3>
+
+                Current Product Image
+
+            </h3>
+
+            <img
+
+             [src]="environment.imageUrl + product.productImagePath"
+
+                alt="Product Image">
+
+        </div>
+
+        <div class="button-area">
+
+            <button
+
+                class="update-btn"
+
+                (click)="updateProduct()">
+
+                Update Product
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

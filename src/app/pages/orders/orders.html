@@ -1,0 +1,197 @@
+<div class="orders-page">
+
+    <div class="orders-header">
+
+        <div>
+
+            <h1>My Orders</h1>
+
+            <p>
+
+                View your purchase history and download invoices.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div
+        class="empty-orders"
+        *ngIf="orders.length===0">
+
+        <div class="empty-icon">
+
+            📦
+
+        </div>
+
+        <h2>
+
+            No Orders Found
+
+        </h2>
+
+        <p>
+
+            Your purchased products will appear here.
+
+        </p>
+
+    </div>
+
+    <div
+        class="order-card"
+        *ngFor="let order of orders">
+
+        <div class="order-top">
+
+            <div>
+
+                <h2>
+
+                    Order #{{ order.orderID }}
+
+                </h2>
+
+                <p>
+
+                    {{ order.orderDate | date:'medium' }}
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <span
+                    class="status placed"
+                    *ngIf="order.status=='Placed'">
+
+                    Placed
+
+                </span>
+
+                <span
+                    class="status processing"
+                    *ngIf="order.status=='Processing'">
+
+                    Processing
+
+                </span>
+
+                <span
+                    class="status shipped"
+                    *ngIf="order.status=='Shipped'">
+
+                    Shipped
+
+                </span>
+
+                <span
+                    class="status delivered"
+                    *ngIf="order.status=='Delivered'">
+
+                    Delivered
+
+                </span>
+
+                <span
+                    class="status cancelled"
+                    *ngIf="order.status=='Cancelled'">
+
+                    Cancelled
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="items-list">
+
+            <div
+                class="item"
+
+                *ngFor="let item of order.orderDetails">
+
+                <div>
+
+                    <h3>
+
+                        {{ item.productName }}
+
+                    </h3>
+
+                    <p>
+
+                        Quantity :
+                        {{ item.quantity }}
+
+                    </p>
+
+                </div>
+
+                <div class="item-price">
+
+                    ₹{{ item.price }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="order-footer">
+
+            <div class="total">
+
+                <span>
+
+                    Grand Total
+
+                </span>
+
+                <h2>
+
+                    ₹{{ order.totalAmount }}
+
+                </h2>
+
+            </div>
+
+            <div class="actions">
+
+                <button
+
+                    class="cancel-btn"
+
+                    type="button"
+
+                    *ngIf="order.status!='Delivered'"
+
+                    [disabled]="order.status=='Cancelled'"
+
+                    (click)="cancelOrder(order.orderID)">
+
+                    Cancel Order
+
+                </button>
+
+                <button
+
+                    class="invoice-btn"
+
+                    (click)="downloadInvoice(order)">
+
+                    Download Invoice
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

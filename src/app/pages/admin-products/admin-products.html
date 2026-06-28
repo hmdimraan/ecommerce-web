@@ -1,0 +1,200 @@
+<div class="products-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Manage Products</h1>
+
+            <p>
+                Create, update and manage your store inventory.
+            </p>
+
+        </div>
+
+        <button
+            class="add-product-btn"
+            routerLink="/add-product">
+
+            <span>＋</span>
+
+            Add Product
+
+        </button>
+
+    </div>
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <div>
+
+                <h2>
+
+                    Product Inventory
+
+                </h2>
+
+                <p>
+
+                    {{ products.length }} Products Available
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="products-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Image</th>
+
+                        <th>Product Name</th>
+
+                        <th>Price</th>
+
+                        <th>Stock</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let p of products">
+
+                        <td>
+
+                            <div class="image-wrapper">
+
+                               <img
+                                [src]="environment.imageUrl + p.productImagePath"
+    alt="{{p.productName}}">
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div class="product-info">
+
+                                <h3>
+
+                                    {{ p.productName }}
+
+                                </h3>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <span class="price">
+
+                                ₹{{ p.price }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="stock"
+
+                                [class.low-stock]="p.stock <= 5"
+
+                                [class.medium-stock]="p.stock > 5 && p.stock <= 20"
+
+                                [class.high-stock]="p.stock > 20">
+
+                                {{ p.stock }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+
+                                    class="edit-btn"
+
+                                    [routerLink]="['/edit-product', p.productID]">
+
+                                    Edit
+
+                                </button>
+
+                                <button
+
+                                    class="delete-btn"
+
+                                    (click)="deleteProduct(p.productID)">
+
+                                    Delete
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div
+                class="empty-state"
+                *ngIf="products.length===0">
+
+                <div class="empty-icon">
+
+                    📦
+
+                </div>
+
+                <h2>
+
+                    No Products Found
+
+                </h2>
+
+                <p>
+
+                    Start by adding your first product.
+
+                </p>
+
+                <button
+
+                    class="add-product-btn"
+
+                    routerLink="/add-product">
+
+                    Add Product
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,197 @@
+<div class="product-details-page">
+
+    <div *ngIf="product" class="product-card">
+
+        <div class="product-image">
+<img
+   [src]="environment.imageUrl + product.productImagePath">
+        </div>
+
+        <div class="product-info">
+
+            <h1>
+
+                {{ product.productName }}
+
+            </h1>
+
+            <h2 class="price">
+
+                ₹{{ product.price }}
+
+            </h2>
+
+            <div class="product-status">
+
+                <span class="in-stock">
+
+                    ✔ In Stock
+
+                </span>
+
+            </div>
+
+            <button
+                class="buy-btn"
+                (click)="addToCart(product)">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- REVIEWS -->
+    <!-- ========================= -->
+
+    <div class="reviews-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                Customer Reviews
+
+            </h2>
+
+            <p>
+
+                See what customers are saying.
+
+            </p>
+
+        </div>
+
+        <div
+            class="review-card"
+
+            *ngFor="let r of reviews">
+
+            <div class="review-top">
+
+                <div class="stars">
+
+                    ⭐ {{ r.rating }}/5
+
+                </div>
+
+            </div>
+
+            <p>
+
+                {{ r.comment }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- WRITE REVIEW -->
+    <!-- ========================= -->
+
+    <div class="write-review-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                Write a Review
+
+            </h2>
+
+            <p>
+
+                Share your experience with this product.
+
+            </p>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                Rating
+
+            </label>
+
+            <select
+
+                class="form-select"
+
+                [(ngModel)]="newReview.rating">
+
+                <option value="1">
+
+                    ⭐ 1
+
+                </option>
+
+                <option value="2">
+
+                    ⭐⭐ 2
+
+                </option>
+
+                <option value="3">
+
+                    ⭐⭐⭐ 3
+
+                </option>
+
+                <option value="4">
+
+                    ⭐⭐⭐⭐ 4
+
+                </option>
+
+                <option value="5">
+
+                    ⭐⭐⭐⭐⭐ 5
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                Review
+
+            </label>
+
+            <textarea
+
+                class="review-text"
+
+                rows="6"
+
+                placeholder="Write your review..."
+
+                [(ngModel)]="newReview.comment">
+
+            </textarea>
+
+        </div>
+
+        <button
+
+            class="submit-btn"
+
+            (click)="addReview()">
+
+            Submit Review
+
+        </button>
+
+    </div>
+
+</div>

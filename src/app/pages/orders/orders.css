@@ -1,0 +1,463 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+.orders-page{
+
+    max-width:1300px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.orders-header{
+
+    margin-bottom:40px;
+
+}
+
+.orders-header h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+
+}
+
+.orders-header p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-orders{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:80px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.empty-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+.empty-orders h2{
+
+    color:#0f172a;
+
+    margin-bottom:12px;
+
+}
+
+.empty-orders p{
+
+    color:#64748b;
+
+}
+
+/* ==========================================
+   ORDER CARD
+========================================== */
+
+.order-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.order-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 28px 55px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   TOP
+========================================== */
+
+.order-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.order-top h2{
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.order-top p{
+
+    color:#64748b;
+
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status{
+
+    padding:10px 22px;
+
+    border-radius:40px;
+
+    color:white;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.placed{
+
+    background:#2563eb;
+
+}
+
+.processing{
+
+    background:#f59e0b;
+
+}
+
+.shipped{
+
+    background:#8b5cf6;
+
+}
+
+.delivered{
+
+    background:#16a34a;
+
+}
+
+.cancelled{
+
+    background:#dc2626;
+
+}
+
+/* ==========================================
+   ITEMS
+========================================== */
+
+.items-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    padding:18px 22px;
+
+    transition:.3s;
+
+}
+
+.item:hover{
+
+    background:#eef2ff;
+
+}
+
+.item h3{
+
+    color:#0f172a;
+
+    margin-bottom:6px;
+
+    font-size:18px;
+
+}
+
+.item p{
+
+    color:#64748b;
+
+}
+
+.item-price{
+
+    color:#16a34a;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.order-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+    border-top:1px solid #e2e8f0;
+
+    padding-top:25px;
+
+}
+
+/* ==========================================
+   TOTAL
+========================================== */
+
+.total span{
+
+    color:#64748b;
+
+}
+
+.total h2{
+
+    color:#16a34a;
+
+    font-size:34px;
+
+    margin-top:8px;
+
+}
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.actions{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================
+   CANCEL BUTTON
+========================================== */
+
+.cancel-btn{
+
+    border:none;
+
+    background:#dc2626;
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.cancel-btn:hover:not(:disabled){
+
+    background:#b91c1c;
+
+    transform:translateY(-3px);
+
+}
+
+.cancel-btn:disabled{
+
+    background:#cbd5e1;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================================
+   INVOICE BUTTON
+========================================== */
+
+.invoice-btn{
+
+    border:none;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 12px 30px rgba(37,99,235,.30);
+
+}
+
+.invoice-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 40px rgba(37,99,235,.45);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+.order-top{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.order-footer{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.actions{
+
+width:100%;
+
+}
+
+.cancel-btn,
+
+.invoice-btn{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.item{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:15px;
+
+}
+
+.orders-header h1{
+
+font-size:32px;
+
+}
+
+.empty-orders{
+
+padding:50px 20px;
+
+}
+
+.total h2{
+
+font-size:28px;
+
+}
+
+}

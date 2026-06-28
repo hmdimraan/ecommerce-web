@@ -1,0 +1,345 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+.edit-product-page{
+
+    max-width:1000px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.page-header{
+
+    margin-bottom:35px;
+
+}
+
+.page-header h1{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+
+}
+
+.page-header p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.loading-card{
+
+    background:white;
+
+    padding:80px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border:8px solid #e2e8f0;
+
+    border-top:8px solid #2563eb;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.edit-product-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:40px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+}
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+    color:#334155;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.form-control{
+
+    border-radius:14px;
+
+    border:1px solid #dbe4ee;
+
+    padding:15px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.form-control:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ==========================================
+   IMAGE SECTION
+========================================== */
+
+.current-image{
+
+    margin-top:40px;
+
+    text-align:center;
+
+}
+
+.current-image h3{
+
+    color:#0f172a;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.current-image{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.current-image img{
+
+    width:220px;
+
+    height:220px;
+
+    padding:15px;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+
+    transition:.35s ease;
+
+}
+
+.current-image img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.button-area{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.update-btn{
+
+    min-width:230px;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.30);
+
+}
+
+.update-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.45);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.edit-product-card{
+
+padding:25px;
+
+}
+
+.button-area{
+
+justify-content:center;
+
+}
+
+.update-btn{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.page-header h1{
+
+font-size:32px;
+
+}
+
+.current-image img{
+
+width:180px;
+
+height:180px;
+
+}
+
+.loading-card{
+
+padding:50px 20px;
+
+}
+
+}

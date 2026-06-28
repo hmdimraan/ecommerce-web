@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --primary:#2563eb;
+  --secondary:#1e293b;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#f59e0b;
+  --light:#f8fafc;
+  --dark:#0f172a;
+
+  --radius:16px;
+  --shadow:0 10px 25px rgba(0,0,0,.1);
+}
+body{
+    font-family:Poppins,sans-serif;
+    background:#f5f7fb;
+}
