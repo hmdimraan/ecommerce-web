@@ -236,5 +236,13 @@ constructor(
     }
 
   }
+getImageUrl(path: string): string {
+  if (!path) return 'assets/no-image.png';
 
+  if (path.startsWith('http')) {
+    return path;
+  }
+
+  return this.environment.imageUrl + path;
+}
 }
