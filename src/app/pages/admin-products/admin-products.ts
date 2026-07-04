@@ -48,11 +48,7 @@ export class AdminProducts implements OnInit {
 
         next: (res) => {
 
-          console.log('API RESPONSE:', res);
-
           this.products = res;
-
-          console.log('PRODUCTS:', this.products);
 
           this.cdr.detectChanges();
 

@@ -60,14 +60,11 @@ export class EditProduct implements OnInit {
 
         next: (res) => {
 
-          console.log('Route ID =', this.id);
-          console.log('Products =', res);
 
           const p = res.find(
             x => Number(x.productID) === Number(this.id)
           );
 
-          console.log('Found Product =', p);
 
           if (p) {
 

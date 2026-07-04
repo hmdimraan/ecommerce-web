@@ -76,9 +76,12 @@
 
                             <div class="image-wrapper">
 
-                               <img
-                                [src]="environment.imageUrl + p.productImagePath"
-    alt="{{p.productName}}">
+     <img
+  [src]="p.productImagePath?.startsWith('http')
+    ? p.productImagePath
+    : environment.imageUrl + p.productImagePath"
+  alt="{{ p.productName }}"
+/>
 
                             </div>
 

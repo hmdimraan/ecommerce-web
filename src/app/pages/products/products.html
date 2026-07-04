@@ -99,14 +99,20 @@
 
             <div class="image-section">
 
-                <img
+<img
+  [src]="p.productImagePath ? p.productImagePath : 'assets/no-image.png'"
+  alt="{{ p.productName }}"
+/>
+                
 
-                    [src]="
-                    p.productImagePath
-                    ? 'https://ecommerce-api-fm65.onrender.com/' + p.productImagePath
-                    : 'assets/no-image.png'"
-
-                    alt="{{ p.productName }}">
+                    <!-- <img
+  [src]="p.productImagePath
+    ? (p.productImagePath.startsWith('http')
+        ? p.productImagePath
+        : environment.imageUrl + p.productImagePath)
+    : 'assets/no-image.png'"
+  alt="{{ p.productName }}"
+/> -->
 
             </div>
 

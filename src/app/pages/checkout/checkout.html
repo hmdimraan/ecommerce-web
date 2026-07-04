@@ -28,9 +28,12 @@
 
                 <div class="product-image">
 
-                   <img
-   [src]="environment.imageUrl + item.productImagePath">
-                </div>
+<img
+  [src]="item.productImagePath?.startsWith('http')
+    ? item.productImagePath
+    : environment.imageUrl + item.productImagePath"
+  alt="Product Image"
+/>   </div>
 
                 <div class="product-details">
 

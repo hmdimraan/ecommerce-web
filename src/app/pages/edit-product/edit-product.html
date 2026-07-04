@@ -111,11 +111,12 @@
 
             </h3>
 
-            <img
-
-             [src]="environment.imageUrl + product.productImagePath"
-
-                alt="Product Image">
+        <img
+  [src]="product.productImagePath?.startsWith('http')
+    ? product.productImagePath
+    : environment.imageUrl + product.productImagePath"
+  alt="Product Image"
+/>
 
         </div>
 

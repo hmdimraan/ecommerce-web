@@ -33,7 +33,7 @@ export const routes: Routes = [
         .then(m => m.Register)
   },
 
-  // 🏠 Dashboard
+
 {
   path: 'dashboard',
   loadComponent: () =>
@@ -41,7 +41,7 @@ export const routes: Routes = [
       .then(m => m.Dashboard),
   canActivate: [adminGuard]
 },
-  // 🛍 Products
+
   {
     path: 'products',
     loadComponent: () =>
@@ -50,7 +50,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // 🛒 Cart
+
   {
     path: 'cart',
     loadComponent: () =>
@@ -59,7 +59,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // 💳 Checkout
+  
   {
     path: 'checkout',
     loadComponent: () =>
@@ -68,7 +68,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // 📦 Orders
+ 
   {
     path: 'orders',
     loadComponent: () =>
@@ -77,13 +77,13 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // 🛠 Admin
+  
   {
     path: 'admin',
     loadComponent: () =>
       import('./pages/admin/admin')
         .then(m => m.Admin),
-    canActivate: [authGuard, adminGuard]   // 🔥 IMPORTANT FIX
+    canActivate: [authGuard, adminGuard]   
   },
 
  {
