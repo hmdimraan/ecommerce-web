@@ -99,7 +99,7 @@
 
             <div class="image-section">
 <img
-  [src]="getImageUrl(p.productImagePath)"
+  [src]="p.productImagePath"
   alt="{{ p.productName }}"
   (error)="$event.target.src='assets/no-image.png'"
 />
