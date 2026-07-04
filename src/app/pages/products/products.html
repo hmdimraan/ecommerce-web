@@ -100,7 +100,9 @@
             <div class="image-section">
 
 <img
-  [src]="p.productImagePath"
+  [src]="p.productImagePath?.startsWith('http')
+    ? p.productImagePath.replace('http://', 'https://')
+    : 'assets/no-image.png'"
   alt="{{ p.productName }}"
   (error)="$event.target.src='assets/no-image.png'"
 />
