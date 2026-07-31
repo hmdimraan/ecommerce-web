@@ -1,59 +1,185 @@
-# EcommerceWeb
+# 🛒 ShopSphere Web
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+A modern Angular-based frontend for **ShopSphere**, providing a seamless online shopping experience with AI-powered recommendations, responsive design, secure authentication, and an intuitive user interface.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Features
+
+- 🔐 Secure Login & Registration
+- 🛍️ Product Browsing
+- 🔎 Search & Category Filter
+- 🤖 Personalized Recommendations
+- ❤️ Customers Also Viewed
+- 🛒 Shopping Cart
+- 💳 Checkout
+- 📦 Order History
+- 📄 Invoice Download
+- ⭐ Product Reviews
+- 📱 Fully Responsive UI
+- 🎨 Modern User Experience
+
+---
+
+## 🏗️ Application Flow
+
+```
+Login
+   │
+   ▼
+Browse Products
+   │
+   ▼
+AI Recommendations
+   │
+   ▼
+Product Details
+   │
+   ▼
+Add To Cart
+   │
+   ▼
+Checkout
+   │
+   ▼
+Orders
+   │
+   ▼
+Invoice
+```
+
+---
+
+## 📦 Project Structure
+
+```
+ecommerce-web
+│
+├── components
+├── pages
+├── services
+├── models
+├── guards
+├── interceptors
+├── environments
+├── assets
+└── app
+```
+
+---
+
+## 🎨 Pages
+
+- Home
+- Login
+- Register
+- Products
+- Product Details
+- Cart
+- Checkout
+- Orders
+- Admin Dashboard
+
+---
+
+## 🤖 AI Features
+
+Integrated with the Python Recommendation Engine.
+
+### Product Recommendations
+
+- Similar Products
+- Frequently Bought Together
+- Trending Products
+- Viewed by Similar Users
+
+### Personalized Recommendations
+
+Based on
+
+- View History
+- Cart Activity
+- Purchase History
+
+---
+
+## 🛠️ Technologies Used
+
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+- Bootstrap
+- RxJS
+- JWT Authentication
+- REST API
+
+---
+
+## 📄 Invoice Features
+
+- Professional PDF Invoice
+- GST Calculation
+- Payment Status
+- Order Summary
+- Download Invoice
+
+---
+
+## ⚙️ Running the Project
+
+Clone
+
+```bash
+git clone https://github.com/<your-username>/ecommerce-web.git
+```
+
+Install packages
+
+```bash
+npm install
+```
+
+Run
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Application
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+## 🔗 Backend
+
+Connects to
+
+```
+ASP.NET Core Web API
 ```
 
-## Building
+and
 
-To build the project run:
-
-```bash
-ng build
+```
+Python Recommendation Engine
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 👨‍💻 Author
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+**Mohammed Imraan H**
 
-```bash
-ng test
-```
+B.Tech Computer Science Engineering
 
-## Running end-to-end tests
+IIIT Tiruchirappalli
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## ⭐ Support
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+If you found this project useful, please give it a ⭐.
