@@ -1,12 +1,18 @@
 <div class="product-details-page">
 
+    <!-- ========================= -->
+    <!-- PRODUCT DETAILS -->
+    <!-- ========================= -->
+
     <div *ngIf="product" class="product-card">
 
         <div class="product-image">
-<img
-  [src]="environment.imageUrl + product.productImagePath"
-  [alt]="product.productName"
-/> </div>
+
+            <img
+                [src]="environment.imageUrl + product.productImagePath"
+                [alt]="product.productName">
+
+        </div>
 
         <div class="product-info">
 
@@ -21,6 +27,12 @@
                 ₹{{ product.price }}
 
             </h2>
+
+            <p class="product-description">
+
+                {{ product.description }}
+
+            </p>
 
             <div class="product-status">
 
@@ -44,52 +56,121 @@
 
     </div>
 
-    <!-- ========================= -->
-    <!-- REVIEWS -->
-    <!-- ========================= -->
+ <!-- ========================= -->
+<!-- CUSTOMERS ALSO VIEWED -->
+<!-- ========================= -->
 
-    <div class="reviews-card">
+<div
+    class="recommended-products"
+    *ngIf="recommendedProducts.length > 0">
 
-        <div class="section-header">
+    <div class="section-header">
 
-            <h2>
+        <h2>
 
-                Customer Reviews
+            Customers Also Viewed
 
-            </h2>
+        </h2>
 
-            <p>
+        <p>
 
-                See what customers are saying.
+            Personalized recommendations based on similarity,
+            customer activity, purchase history and trending products.
 
-            </p>
+        </p>
 
-        </div>
+    </div>
 
-        <div
-            class="review-card"
+    <div class="recommended-grid">
+<div
+    class="recommended-card"
+    *ngFor="let p of recommendedProducts">
 
-            *ngFor="let r of reviews">
+    <div class="card-content">
 
-            <div class="review-top">
+        <img
+            [src]="environment.imageUrl + p.productImagePath"
+            [alt]="p.productName">
 
-                <div class="stars">
+        <h3>{{ p.productName }}</h3>
 
-                    ⭐ {{ r.rating }}/5
+        <h4>₹{{ p.price }}</h4>
 
-                </div>
+        <p class="recommendation-confidence">
+            {{ p.confidence }}
+        </p>
+
+       <div class="recommendation-reasons">
+
+    <span
+        class="reason-chip"
+        *ngFor="let reason of p.reasons">
+
+        {{ reason }}
+
+    </span>
+
+</div>
+
+    </div>
+
+    <button
+        class="view-btn"
+        (click)="viewProduct(p.productID)">
+
+        View Product
+
+    </button>
+
+</div>
+    </div>
+
+</div>
+<!-- ========================= -->
+<!-- CUSTOMER REVIEWS -->
+<!-- ========================= -->
+
+<div class="reviews-card">
+
+    <div class="section-header">
+
+        <h2>
+
+            Customer Reviews
+
+        </h2>
+
+        <p>
+
+            See what customers are saying.
+
+        </p>
+
+    </div>
+
+    <div
+        class="review-card"
+        *ngFor="let r of reviews">
+
+        <div class="review-top">
+
+            <div class="stars">
+
+                ⭐ {{ r.rating }}/5
 
             </div>
 
-            <p>
-
-                {{ r.comment }}
-
-            </p>
-
         </div>
 
+        <p>
+
+            {{ r.comment }}
+
+        </p>
+
     </div>
+
+</div>
 
     <!-- ========================= -->
     <!-- WRITE REVIEW -->
@@ -122,40 +203,14 @@
             </label>
 
             <select
-
                 class="form-select"
-
                 [(ngModel)]="newReview.rating">
 
-                <option value="1">
-
-                    ⭐ 1
-
-                </option>
-
-                <option value="2">
-
-                    ⭐⭐ 2
-
-                </option>
-
-                <option value="3">
-
-                    ⭐⭐⭐ 3
-
-                </option>
-
-                <option value="4">
-
-                    ⭐⭐⭐⭐ 4
-
-                </option>
-
-                <option value="5">
-
-                    ⭐⭐⭐⭐⭐ 5
-
-                </option>
+                <option value="1">⭐ 1</option>
+                <option value="2">⭐⭐ 2</option>
+                <option value="3">⭐⭐⭐ 3</option>
+                <option value="4">⭐⭐⭐⭐ 4</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5</option>
 
             </select>
 
@@ -170,13 +225,9 @@
             </label>
 
             <textarea
-
                 class="review-text"
-
                 rows="6"
-
                 placeholder="Write your review..."
-
                 [(ngModel)]="newReview.comment">
 
             </textarea>
@@ -184,9 +235,7 @@
         </div>
 
         <button
-
             class="submit-btn"
-
             (click)="addReview()">
 
             Submit Review

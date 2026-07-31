@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import {
+  Router,
+  RouterModule
+} from '@angular/router';
+
 import { ToastrService } from 'ngx-toastr';
 
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { CategoryService } from '../../services/category.service';
-import { ChangeDetectorRef } from '@angular/core';
+import { ActivityService } from '../../services/activity.service';
+
 import { Product } from '../../models/product.model';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -24,8 +33,13 @@ import { environment } from '../../../environments/environment';
   styleUrl: './products.css'
 })
 export class Products implements OnInit {
+
   environment = environment;
+
   products: Product[] = [];
+  allProducts: Product[] = [];
+  recommendedProducts: Product[] = [];
+
   categories: any[] = [];
 
   searchText = '';
@@ -34,85 +48,154 @@ export class Products implements OnInit {
   currentPage = 1;
   pageSize = 6;
 
-constructor(
-  private productService: ProductService,
-  private cartService: CartService,
-  private toastr: ToastrService,
-  private categoryService: CategoryService,
-  private router: Router,
-  private cdr: ChangeDetectorRef
-) {
-
-  this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationEnd)
-    )
-    .subscribe(() => {
-
-      if (this.router.url === '/products') {
-
-        this.loadProducts();
-
-      }
-
-    });
-
-}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private categoryService: CategoryService,
+    private activityService: ActivityService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-     console.log('Products ngOnInit');
+
     this.loadProducts();
+
     this.loadCategories();
+
   }
 
   loadProducts(): void {
 
-  this.currentPage = 1;
+    this.currentPage = 1;
 
-  this.selectedCategory = 0;
+    this.productService
+      .getProducts()
+      .subscribe({
 
-  this.searchText = '';
+        next: (data: Product[]) => {
 
-  this.productService
-    .getProducts()
-    .subscribe({
+          this.products = data;
 
-     next: (data: Product[]) => {
+          this.allProducts = [...data];
 
-  this.products = data;
-      console.log('Loaded Products:', this.products.length);
-  this.cdr.detectChanges();
+          this.loadRecommendations();
 
-},
-      error: (err) => {
+        },
 
-        console.log(err);
+        error: err => {
 
-        this.toastr.error('Failed to load products');
+          console.log(err);
 
-      }
+          this.toastr.error('Failed to load products');
 
-    });
+        }
 
-}
+      });
+
+  }
 
   loadCategories(): void {
 
-    this.categoryService.getCategories().subscribe({
+    this.categoryService
+      .getCategories()
+      .subscribe({
 
-      next: (res) => {
+        next: res => {
 
-        this.categories = res;
+          this.categories = res;
 
-      },
+        },
 
-      error: (err) => {
+        error: err => console.log(err)
 
-        console.log(err);
+      });
 
-      }
+  }
 
-    });
+  loadRecommendations(): void {
+
+    const userId = Number(localStorage.getItem('userId'));
+
+    if (!userId) {
+
+      this.recommendedProducts = [];
+
+      this.allProducts = [...this.products];
+
+      return;
+
+    }
+
+    this.productService
+      .getUserRecommendations(userId)
+      .subscribe({
+
+       next: (recommendations: any[]) => {
+
+  this.recommendedProducts = recommendations
+    .map(r => {
+
+      const product = this.products.find(
+        p => p.productID === r.productID
+      );
+
+      if (!product) return null;
+
+      return {
+
+        ...product,
+
+        reason: r.reason,
+
+        score: r.score
+
+      } as Product;
+
+    })
+    .filter(
+      (p): p is Product => p !== null
+    );
+
+  this.recommendedProducts =
+    this.recommendedProducts.filter(
+      (p, index, self) =>
+        index ===
+        self.findIndex(
+          x => x.productID === p.productID
+        )
+    );
+
+  this.allProducts =
+    this.products.filter(
+      p =>
+        !this.recommendedProducts.some(
+          r => r.productID === p.productID
+        )
+    );
+
+  this.cdr.detectChanges();
+
+},
+
+        error: err => {
+
+          console.log(err);
+
+          this.recommendedProducts = [];
+
+          this.allProducts = [...this.products];
+
+        }
+
+      });
+
+  }
+
+  viewProduct(productId: number): void {
+
+    this.router.navigate(['/product', productId]);
 
   }
 
@@ -134,9 +217,21 @@ constructor(
 
           this.toastr.success('Product Added To Cart');
 
+          const userId = Number(localStorage.getItem('userId'));
+
+          if (userId) {
+
+            this.activityService
+              .logCart(userId, product.productID)
+              .subscribe({
+                error: err => console.log(err)
+              });
+
+          }
+
         },
 
-        error: (err) => {
+        error: err => {
 
           console.log(err);
 
@@ -152,36 +247,32 @@ constructor(
 
   filteredProducts(): Product[] {
 
-  let filtered = [...this.products];
+    let filtered = [...this.allProducts];
 
-  if (Number(this.selectedCategory) > 0) {
+    if (Number(this.selectedCategory) > 0) {
 
-    filtered = filtered.filter(
+      filtered = filtered.filter(
+        p => p.categoryID === Number(this.selectedCategory)
+      );
 
-      p => p.categoryID === Number(this.selectedCategory)
+    }
 
-    );
+    if (this.searchText.trim()) {
+
+      const search = this.searchText.toLowerCase();
+
+      filtered = filtered.filter(
+        p =>
+          p.productName
+            .toLowerCase()
+            .includes(search)
+      );
+
+    }
+
+    return filtered;
 
   }
-
-  if (this.searchText.trim()) {
-
-    filtered = filtered.filter(
-
-      p =>
-        p.productName
-          .toLowerCase()
-          .includes(
-            this.searchText.toLowerCase()
-          )
-
-    );
-
-  }
-
-  return filtered;
-
-}
 
   paginatedProducts(): Product[] {
 
@@ -199,23 +290,18 @@ constructor(
 
   totalPages(): number {
 
-    return Math.ceil(
-
+    const total = Math.ceil(
       this.filteredProducts().length /
-
       this.pageSize
-
     );
+
+    return total === 0 ? 1 : total;
 
   }
 
   nextPage(): void {
 
-    if (
-
-      this.currentPage < this.totalPages()
-
-    ) {
+    if (this.currentPage < this.totalPages()) {
 
       this.currentPage++;
 
@@ -225,24 +311,40 @@ constructor(
 
   previousPage(): void {
 
-    if (
-
-      this.currentPage > 1
-
-    ) {
+    if (this.currentPage > 1) {
 
       this.currentPage--;
 
     }
 
   }
-getImageUrl(path: string): string {
-  if (!path) return 'assets/no-image.png';
 
-  if (path.startsWith('http')) {
-    return path;
+  getImageUrl(path: string): string {
+
+    if (!path) {
+
+      return 'assets/no-image.png';
+
+    }
+
+    if (path.startsWith('http')) {
+
+      return path;
+
+    }
+
+    return this.environment.imageUrl + path;
+
   }
 
-  return this.environment.imageUrl + path;
-}
+  onImageError(event: Event): void {
+
+    const img =
+      event.target as HTMLImageElement;
+
+    img.src =
+      'https://placehold.co/300x300?text=No+Image';
+
+  }
+
 }

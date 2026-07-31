@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
 import { CheckoutService } from '../../services/checkout.service';
 import { CartService } from '../../services/cart.service';
-
+import { ActivityService } from '../../services/activity.service';
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -21,7 +21,8 @@ export class Checkout implements OnInit {
     private checkoutService: CheckoutService,
     private cartService: CartService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+     private activityService: ActivityService
   ) { }
 
   ngOnInit(): void {
@@ -59,21 +60,37 @@ export class Checkout implements OnInit {
     this.checkoutService
       .placeOrder(order)
       .subscribe({
+next: () => {
 
-        next: () => {
+  this.toastr.success(
+    'Order placed successfully'
+  );
 
-          this.toastr.success(
-            'Order placed successfully'
-          );
+  const userId = Number(localStorage.getItem('userId'));
 
-          localStorage.removeItem('cart');
+  if (userId) {
 
-          this.cart = [];
+    this.cart.forEach(item => {
 
-          this.router.navigate(
-            ['/orders']
-          );
-        },
+      this.activityService
+        .logPurchase(userId, item.productID)
+        .subscribe({
+         error: (err: any) => console.log(err)
+        });
+
+    });
+
+  }
+
+  localStorage.removeItem('cart');
+
+  this.cart = [];
+
+  this.router.navigate(
+    ['/orders']
+  );
+
+},
 
         error: (err) => {
           console.log(err);

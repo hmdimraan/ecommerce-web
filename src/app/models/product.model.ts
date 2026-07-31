@@ -7,4 +7,6 @@ export interface Product {
   productImagePath: string;
   averageRating: number;
 reviewCount: number;
+reason?: string[];
+score?: number;
 }

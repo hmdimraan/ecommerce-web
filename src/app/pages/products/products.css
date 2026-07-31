@@ -134,6 +134,7 @@
    PRODUCT CARD
 ========================================== */
 
+
 .product-card{
 
     background:white;
@@ -145,6 +146,12 @@
     box-shadow:0 18px 40px rgba(0,0,0,.08);
 
     transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:640px;
 
 }
 
@@ -211,11 +218,6 @@
    DETAILS
 ========================================== */
 
-.details-section{
-
-    padding:25px;
-
-}
 
 .details-section h2{
 
@@ -297,13 +299,7 @@
    BUTTONS
 ========================================== */
 
-.buttons{
 
-    display:flex;
-
-    gap:15px;
-
-}
 
 /* ==========================================
    DETAILS BUTTON
@@ -504,5 +500,250 @@ flex-direction:column;
 height:220px;
 
 }
+
+}
+/* ==========================================
+   SECTION TITLE
+========================================== */
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:45px 0 25px;
+
+}
+
+.section-title h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin:0;
+
+}
+
+.section-title p{
+
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   RECOMMENDATION SECTION
+========================================== */
+
+.recommendation-section{
+
+    margin-bottom:55px;
+
+}
+
+.recommended-card{
+
+    position:relative;
+
+    border:2px solid #dbeafe;
+
+}
+
+.recommended-card:hover{
+
+    border-color:#2563eb;
+
+}
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.badge{
+
+    position:absolute;
+
+    top:16px;
+
+    left:16px;
+
+    z-index:10;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:#fff;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.30);
+
+}
+
+/* ==========================================
+   RECOMMENDATION REASON
+========================================== */
+
+.recommend-reason{
+
+    display:inline-block;
+
+    margin:18px 0;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    background:#ecfeff;
+
+    color:#0f766e;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-recommendation{
+
+    margin:45px 0;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.08);
+
+}
+
+.empty-recommendation h3{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-weight:500;
+
+}
+
+/* ==========================================
+   PRODUCT CARD IMPROVEMENTS
+========================================== */
+
+
+
+
+
+.details-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:25px;
+
+}
+
+.details-section h2{
+
+    font-size:22px;
+
+    min-height:56px;
+
+    margin-bottom:12px;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.image-section{
+
+    background:linear-gradient(180deg,#ffffff,#f8fafc);
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .section-title{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+    }
+
+    .section-title h2{
+
+        font-size:24px;
+
+    }
+
+    .badge{
+
+        font-size:12px;
+
+        padding:6px 12px;
+
+    }
 
 }

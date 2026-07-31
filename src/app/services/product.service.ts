@@ -11,13 +11,23 @@ export class ProductService {
 
   private apiUrl = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(
       `${this.apiUrl}/products`
+    );
+  }
+
+  getProductRecommendations(productId: number): Observable<any> {
+    return this.http.get(
+      `${this.apiUrl}/products/recommend/${productId}`
+    );
+  }
+
+  getUserRecommendations(userId: number): Observable<any> {
+    return this.http.get(
+      `${this.apiUrl}/products/recommend/user/${userId}`
     );
   }
 }

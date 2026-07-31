@@ -13,6 +13,10 @@ import { environment } from '../../../environments/environment';
 import { ReviewService } from '../../services/review.service';
 import { CartService } from '../../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivityService } from '../../services/activity.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -26,33 +30,36 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductDetails implements OnInit {
   environment = environment;
   api = environment.apiUrl;
-
+  recommendedProducts: any[] = [];
   product: any = null;
 
   reviews: any[] = [];
-
+  
   newReview = {
     rating: 5,
     comment: ''
   };
 
 constructor(
+  private router: Router,
   private route: ActivatedRoute,
   private http: HttpClient,
   private cartService: CartService,
   private toastr: ToastrService,
-  private cdr: ChangeDetectorRef
+  private cdr: ChangeDetectorRef,
+  private activityService: ActivityService
 ) {}
+ngOnInit(): void {
 
-  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
 
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
-    );
+        const id = Number(params.get('id'));
 
-    this.loadProduct(id);
+        this.loadProduct(id);
 
-  }
+    });
+
+}
 
   loadProduct(id: number): void {
 
@@ -60,19 +67,32 @@ constructor(
       .get<any[]>(`${this.api}/products`)
       .subscribe({
 
-        next: (res) => {
+       next: (res) => {
 
-          this.product =
-            res.find(
-              p => p.productID === id
-            );
+  this.product = res.find(
+    p => p.productID === id
+  );
 
-          this.cdr.detectChanges();
 
-          this.loadReviews(id);
+  const userId = Number(localStorage.getItem('userId'));
 
-        },
+  if (userId && this.product) {
 
+    this.activityService
+      .logView(userId, this.product.productID)
+      .subscribe({
+        next: () => console.log("View logged"),
+        error: (err: any) => console.log(err)
+      });
+
+  }
+
+  this.cdr.detectChanges();
+
+  this.loadReviews(id);
+  this.loadRecommendations(id);
+
+},
         error: (err) => {
 
           console.log(err);
@@ -158,6 +178,35 @@ constructor(
       });
 
   }
+  viewProduct(productId: number): void {
+
+  this.router.navigate(['/product', productId]);
+
+}
+  loadRecommendations(productId: number): void {
+
+  this.http
+    .get<any[]>(`${this.api}/recommend/${productId}`)
+    .subscribe({
+
+      next: (res) => {
+
+        console.log(res);
+        this.recommendedProducts = res;
+
+        this.cdr.detectChanges();
+
+      },
+
+      error: (err) => {
+
+        console.log(err);
+
+      }
+
+    });
+
+}
   addToCart(product: any): void {
 
   if (product.stock <= 0) {
@@ -172,11 +221,24 @@ constructor(
     .addToCart(product.productID, 1)
     .subscribe({
 
-      next: () => {
+   next: () => {
 
-        this.toastr.success('Product Added To Cart');
+  this.toastr.success('Product Added To Cart');
 
-      },
+  const userId = Number(localStorage.getItem('userId'));
+
+  if (userId) {
+
+    this.activityService
+      .logCart(userId, product.productID)
+      .subscribe({
+        next: () => console.log("Cart activity logged"),
+        error: (err: any) => console.log(err)
+      });
+
+  }
+
+},
 
       error: (err) => {
 
